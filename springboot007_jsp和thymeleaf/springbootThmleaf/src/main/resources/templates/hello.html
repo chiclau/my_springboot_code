@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<p th:text="'Hello, ' + ${name} + '!'" >3333</p>
+<a th:href="@{http://localhost:8080/login/jie?address=jjjj}">点我</a>
+<hr />
+<form th:action="@{/login/jie}" method="post">
+	<input type="text" name="address" th:value="${name}" />
+	<input type="submit" value="点我"/>
+</form>
+<hr/>
+<form th:action="@{/login/zaijie}" method="post">
+	<input type="text" name="goods_id" value="" />
+	<input type="text" name="goods_name" value="" />
+	<input type="submit" value="点我"/>
+</form>
+<hr />
+<div th:each="goods:${list}">
+	<span th:text="${goods.goods_name}">111</span>|<a th:href="@{/login/shan(id=${goods.goods_id},name=${goods.goods_name})}">删除</a>
+</div>
+<hr/>
+<!-- 循环套判断 -->
+<div th:each="goods:${list}">
+	<span th:text="${goods.goods_name=='hehe2'?goods.goods_name:'bbb'}">122211</span>
+</div>
+<hr />
+<table border="1">
+	<tr th:each="goods:${list}">
+		<td th:text="${goods.goods_id}"></td>
+		<td th:text="${goods.goods_name}"></td>
+		<td th:text="${goods.goods_num}"></td>
+	</tr>
+</table>
+</body>
+</html>
+
+<a href="#editModal" th:onclick="'javascript:editUser(\''+${prod.id}+'\');'">修改</a>
